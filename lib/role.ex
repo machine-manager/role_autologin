@@ -29,5 +29,6 @@ defmodule RoleAutologin do
 		|> Enum.find(fn tag -> tag |> String.starts_with?("autologin_user:") end)
 		|> String.split(":", parts: 2)
 		|> tl
+		|> hd
 	end
 end
