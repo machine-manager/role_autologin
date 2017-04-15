@@ -1,8 +1,8 @@
 alias Converge.{Util, All, DirectoryEmpty, FilePresent}
 
 defmodule RoleAutologin do
-	require Util
 	import Util, only: [conf_dir: 1]
+	Util.declare_external_resources("files")
 
 	def role(tags \\ []) do
 		autologin_user = get_autologin_user(tags)
