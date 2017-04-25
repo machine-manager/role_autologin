@@ -24,8 +24,7 @@ defmodule RoleAutologin do
 	end
 
 	defp get_autologin_user(tags) do
-		match = Enum.find(tags, fn tag -> tag |> String.starts_with?("autologin_user:") end)
-		[_, user] = String.split(match, ":", parts: 2)
+		[user] = Util.tag_values(tags, "autologin_user")
 		user
 	end
 end
