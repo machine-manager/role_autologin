@@ -4,7 +4,7 @@ defmodule RoleAutologin do
 	import Util, only: [conf_dir: 1]
 
 	def role(tags \\ []) do
-		autologin_user = get_autologin_user(tags)
+		autologin_user = Util.tag_value!(tags, "autologin_user")
 		lightdm_conf   =
 			"""
 			[Seat:*]
@@ -21,10 +21,5 @@ defmodule RoleAutologin do
 			desired_packages:  ["lightdm", "lightdm-gtk-greeter"],
 			post_install_unit: post_install_unit,
 		}
-	end
-
-	defp get_autologin_user(tags) do
-		[user] = Util.tag_values(tags, "autologin_user")
-		user
 	end
 end
